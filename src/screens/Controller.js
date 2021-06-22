@@ -15,6 +15,7 @@ class Controller extends Component {
             <Router>
                 <div className="main-controller">
                     <Route exact path='/' render={(props) => <Login {...props} baseurl = {this.baseurl}/>} />
+                    <Route exact path='/home' render={(props) => <Home {...props} baseurl = {this.baseurl}/>} />
                 </div>
             </Router>
         )

@@ -1,5 +1,21 @@
-.login-card {
-    padding-top: 20px;
+.card-container {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.login-card {
+    padding-top: 20px;
+}
+
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+
+.red {
+    color: red;
 }
