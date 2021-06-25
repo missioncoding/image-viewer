@@ -44,7 +44,7 @@ class Login extends Component {
     loginClickHandler = () => {
         let testUser = "scott"
         let testPassword = "tiger"
-        let accessToken = "IGQVJValpYdl9JaFJjQXpZAbmJlOEk2dlo3bkhBWDg3U1ZASMldkamlaV0ZAJMDRCMnlkTzZAxT0pmWDF0NUFXRUEwbnJiMkVQcXpVc3UxVDhpX0VJN2lQNjFWek1Wdnd0Qnd2WHI2RzY2RUZALQXlnSFI4UEY3VW9nLVZAFNlhz"
+        let accessToken = "IGQVJVcUdDWDIwTm1ZAQkdvWE9JeTlEVGtRbENnRWpST3hDNGtjUjZAnYVR6LXVyVjRyLXhxWVVpdy1vNE1HSDc1SkRqMUY3a2NtN0tqV3ZADNGgwT2Y4dU1mdS1QTzVreUNfZAWE1a3diT2VCU3N2akZAGYVlSVjVKWjNsNm1n"
         this.setState({invalidLogin:"dispNone"})
         this.state.username === "" ? this.setState({usernameRequired: "dispBlock"}) : 
                                      this.setState({usernameRequired: "dispNone"});
@@ -57,6 +57,7 @@ class Login extends Component {
 
         if (this.state.username === testUser && this.state.password === testPassword) {
             window.sessionStorage.setItem("access-token",accessToken)
+            window.sessionStorage.setItem('username','Zeelani');
             this.props.history.push({
                 pathname: '/home',
                 homepage: this.state
