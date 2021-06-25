@@ -26,8 +26,8 @@ const styles = theme => ({
 
 class Home extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             postDescription: [],
             postDetails: []
@@ -57,6 +57,19 @@ class Home extends Component {
         });
     }
 
+    searchAddHandler = (searchFor) =>{
+        console.log("Search string :" + this.state.postDescription)
+        let posts = this.state.postDescription;
+        posts = posts.filter((post) => {
+            let caption = post.caption.toLowerCase();
+            let enteredStr = searchFor.toLowerCase();
+            return caption.includes(enteredStr);
+        })
+        this.setState({
+            postDescription: posts
+        })
+    }
+
     getPostDetailsById = (id) => {
         let that = this
         let xhr = new XMLHttpRequest();
@@ -76,7 +89,7 @@ class Home extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Header showProfileIcon="true" showSearchBox="true" />
+                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler}/>
                 <div className={classes.gridContainer}>
                     <GridList className={classes.gridList} cellHeight={'auto'} cols={2}>
                         {this.state.postDetails.map((item, index) => (

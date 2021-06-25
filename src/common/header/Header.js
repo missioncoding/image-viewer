@@ -93,6 +93,7 @@ class Header extends Component {
                                 <SearchIcon />
                             </div>
                             <InputBase
+                                onChange={(e)=>{this.props.searchHandler(e.target.value)}} 
                                 placeholder="Search…"
                                 classes={{
                                     root: classes.inputRoot,
