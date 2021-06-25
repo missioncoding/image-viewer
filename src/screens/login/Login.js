@@ -44,7 +44,7 @@ class Login extends Component {
     loginClickHandler = () => {
         let testUser = "scott"
         let testPassword = "tiger"
-        let accessToken = "IGQVJVcUdDWDIwTm1ZAQkdvWE9JeTlEVGtRbENnRWpST3hDNGtjUjZAnYVR6LXVyVjRyLXhxWVVpdy1vNE1HSDc1SkRqMUY3a2NtN0tqV3ZADNGgwT2Y4dU1mdS1QTzVreUNfZAWE1a3diT2VCU3N2akZAGYVlSVjVKWjNsNm1n"
+        let accessToken = "IGQVJXQ3FmSlVkYWhJbWxkZA1pqczlXbWFUemFwaUNGVEpXRzUzaTNPOTd1TW1kX0hleU95RnlmU1pOcVd2UXNaQVZAYNm5BU3IxbWFXb1dkcUYyU0FvNm9QS1JDbERvcUwzZA0MzcTNURmlwcUE3WEg0QmJrMTloTmlkZA3VV"
         this.setState({invalidLogin:"dispNone"})
         this.state.username === "" ? this.setState({usernameRequired: "dispBlock"}) : 
                                      this.setState({usernameRequired: "dispNone"});
