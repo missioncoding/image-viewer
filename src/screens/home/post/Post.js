@@ -30,8 +30,13 @@ const styles = theme => ({
     row: {
         display:'flex',
         flexDirection:'row',
+    },
+    card: {
+        maxWidth: 1100,
+    },
+    avatar: {
+        margin: 10,
     }
-
 })
 
 
@@ -96,11 +101,11 @@ class Post extends Component {
         });
 
         return (
-            <div>
-                <Card>
+            <div className="cardContainer">
+                <Card className={classes.card}>
                     <CardHeader
                         avatar={
-                            <Avatar>A</Avatar>
+                            <Avatar className={classes.avatar}>A</Avatar>
                         }
                         title={detail.username}
                         subheader={time}

@@ -60,14 +60,29 @@ class Home extends Component {
     searchAddHandler = (searchFor) =>{
         console.log("Search string :" + this.state.postDescription)
         let posts = this.state.postDescription;
+        let selectedPosts = []
         posts = posts.filter((post) => {
             let caption = post.caption.toLowerCase();
             let enteredStr = searchFor.toLowerCase();
-            return caption.includes(enteredStr);
+            if (caption.includes(enteredStr)) {
+                selectedPosts.push(post.id)
+                return true
+            } else {
+                return false
+            }
         })
         this.setState({
             postDescription: posts
         })
+        console.log("selected posts " +selectedPosts)
+        console.log("postDetails " +this.state.postDetails)
+        let postd = this.state.postDetails
+        postd = postd.filter(item => selectedPosts.includes(item.id));
+        this.setState({
+            postDetails: postd
+        })
+
+
     }
 
     getPostDetailsById = (id) => {
