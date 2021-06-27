@@ -1,0 +1,27 @@
+.top-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.profile-picture-avatar {
+    width: "90px";
+    height: "90px";
+}
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+.red {
+    color: red;
+}
+
+.row {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center
+}

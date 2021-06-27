@@ -23,13 +23,13 @@ const styles = theme => ({
         paddingTop: '60%'
     },
     formControl: {
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between'
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     row: {
-        display:'flex',
-        flexDirection:'row',
+        display: 'flex',
+        flexDirection: 'row',
     },
     card: {
         maxWidth: 1100,
@@ -53,10 +53,10 @@ class Post extends Component {
 
     commentChangeHandler = (e) => {
         this.setState({
-          comment:e.target.value,
+            comment: e.target.value,
         });
-      }
-    
+    }
+
     commentAddHandler = () => {
         if (this.state.comment === '') {
             return
@@ -64,7 +64,7 @@ class Post extends Component {
         this.setState({
             comments: this.state.comments.concat(this.state.comment)
         })
-      }
+    }
 
     likeClickHandler = () => {
         /* toggle the like icon */
@@ -118,6 +118,9 @@ class Post extends Component {
                     <CardContent>
                         <Typography variant="body2" color="textSecondary" component="p">
                             {caption}
+                        </Typography>
+                        <Typography style={{ color: '#4dabf5' }} component="p" >
+                            #Garden #Rose #nature #Lab #Cells
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>

@@ -5,6 +5,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import {withStyles} from '@material-ui/core/styles';
+import profile_pic from '../../assets/profile_pic.jpg';
 
 import './Home.css';
 
@@ -57,6 +58,15 @@ class Home extends Component {
         });
     }
 
+    logout = () => {
+        sessionStorage.clear();
+        this.props.history.replace('/');
+    }
+    
+    openProfilePage = () =>{
+        this.props.history.push('/profile');
+    }
+
     searchAddHandler = (searchFor) =>{
         console.log("Search string :" + this.state.postDescription)
         let posts = this.state.postDescription;
@@ -104,7 +114,10 @@ class Home extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler}/>
+                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler}
+                        logout={this.logout}
+                        openProfilePage={this.openProfilePage}
+                        showMyAccountMenuItem="true"/>
                 <div className={classes.gridContainer}>
                     <GridList className={classes.gridList} cellHeight={'auto'} cols={2}>
                         {this.state.postDetails.map((item, index) => (
