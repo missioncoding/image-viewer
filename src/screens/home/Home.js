@@ -116,6 +116,9 @@ class Home extends Component {
 
     render() {
         const { classes } = this.props;
+        if (sessionStorage.getItem("access-token") === null) {
+            this.props.history.push("/");
+        }
         return (
             <div>
                 <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler} history={this.props.history}

@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import profile_pic from '../../../assets/profile_pic.jpg';
 
 import './Post.css'
 
@@ -36,6 +37,7 @@ const styles = theme => ({
     },
     avatar: {
         margin: 10,
+        cursor:'pointer'
     }
 })
 
@@ -62,7 +64,8 @@ class Post extends Component {
             return
         }
         this.setState({
-            comments: this.state.comments.concat(this.state.comment)
+            comments: this.state.comments.concat(this.state.comment),
+            comment:''
         })
     }
 
@@ -92,7 +95,7 @@ class Post extends Component {
         let min = timestamp.getMinutes();
         let sec = timestamp.getSeconds();
 
-        let time = day + "/" + month + "/" + year + " " + hours + ":" + min + ":" + sec;
+        let time = ('0' + day).slice(-2) + "/" + ('0' + month).slice(-2) + "/" + year + " " + ('0' + hours).slice(-2) + ":" + ('0' + min).slice(-2) + ":" + ('0' + sec).slice(-2);
         let caption = '';
         description.forEach(post => {
             if (detail.id === post.id) {
@@ -105,7 +108,7 @@ class Post extends Component {
                 <Card className={classes.card}>
                     <CardHeader
                         avatar={
-                            <Avatar className={classes.avatar}>A</Avatar>
+                            <Avatar className={classes.avatar} src={profile_pic}/>
                         }
                         title={detail.username}
                         subheader={time}
@@ -144,12 +147,12 @@ class Post extends Component {
                             </div>
                         ))}
                         <div className={classes.formControl}>
-                            <FormControl style={{ flexGrow: 1 }}>
+                            <FormControl style={{ flexGrow: 1}}>
                                 <InputLabel htmlFor="comment">Add a comment</InputLabel>
                                 <Input id="comment" value={this.state.comment} onChange={this.commentChangeHandler} />
                             </FormControl>
                             <FormControl className="commentAdd">
-                                <Button onClick={this.commentAddHandler}
+                                <Button onClick={this.commentAddHandler} style={{marginTop: "12px",marginLeft: "10px"}}
                                     variant="contained" color="primary">
                                     ADD
                                 </Button>
