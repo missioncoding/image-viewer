@@ -29,6 +29,7 @@ const styles = theme => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+        cursor: 'pointer'
     },
     search: {
         position: 'relative',
@@ -75,8 +76,8 @@ const styles = theme => ({
 
 
 class Header extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             anchorEl: null
         }
@@ -102,6 +103,10 @@ class Header extends Component {
         this.setState({ anchorEl: null });
     }
 
+    logoClickHandler = () => {
+        sessionStorage.getItem("access-token") !== null ? this.props.history.push("/home") : this.props.history.push("/");
+    }
+
 
 
     render() {
@@ -110,7 +115,7 @@ class Header extends Component {
             <div className={classes.root}>
                 <AppBar position="static" className={classes.barcolor}>
                     <Toolbar>
-                        <Typography className={classes.title} variant="h6" noWrap>
+                        <Typography className={classes.title} variant="h6" noWrap onClick={this.logoClickHandler}>
                             Image Viewer
                         </Typography>
                         {this.props.showSearchBox === "true" ?

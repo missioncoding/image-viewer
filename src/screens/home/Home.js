@@ -114,7 +114,7 @@ class Home extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler}
+                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler} history={this.props.history}
                         logout={this.logout}
                         openProfilePage={this.openProfilePage}
                         showMyAccountMenuItem="true"/>
