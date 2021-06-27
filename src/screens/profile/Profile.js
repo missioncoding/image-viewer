@@ -241,6 +241,9 @@ class Profile extends Component {
     render() {
         const { classes } = this.props;
         let likeCount = this.state.likes;
+        if (sessionStorage.getItem("access-token") === null) {
+            this.props.history.push("/");
+        }
         return (
             <div>
                 <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler} history={this.props.history}
@@ -317,16 +320,16 @@ class Profile extends Component {
                                     <Avatar
                                         alt="User Image"
                                         src={profile_pic}
-                                        style={{ width: "50px", height: "50px", margin: '10px' }} />
+                                        style={{ width: "50px", height: "50px", margin: '10px' ,cursor:'pointer'}} />
                                     <Typography component="p">
                                         {this.state.user}
                                     </Typography>
                                 </div>
                                 <div className={classes.openedImageObjContainerRow22}>
                                     <div>
-                                        <Typography component="p">
+                                        <Typography component="p" style={{marginTop:'10px'}}>
                                             {this.state.openedImageObj.caption}
-                                        </Typography><br />
+                                        </Typography>
                                         <Typography style={{ color: '#4dabf5' }} component="p" >
                                             #Garden #Leaves #Plants #Rose #Lab #Cells
                                         </Typography>
