@@ -52,6 +52,8 @@ class Profile extends Component {
         this.state = {
             postDescription: [],
             postDetails: [],
+            dupPostDescription: [],
+            dupPostDetails:[],
             likes: Math.floor(Math.random() * 10) + 1,
             user: "zeedcp",
             fullname: "Mohammad Abdul Khadar Zeelani",
@@ -76,7 +78,9 @@ class Profile extends Component {
         let that = this;
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
-                that.setState({ postDescription: JSON.parse(this.responseText).data });
+                let parsedData = JSON.parse(this.responseText).data;
+                that.setState({ postDescription: parsedData,
+                                dupPostDescription: parsedData});
                 // now get the post details for each post description
                 that.getPostDetails();
 
@@ -100,9 +104,9 @@ class Profile extends Component {
         console.log("post id here :" + id)
         xhr.addEventListener('readystatechange', function () {
             if (this.readyState === 4) {
-                that.setState({
-                    postDetails: that.state.postDetails.concat(JSON.parse(this.responseText))
-                });
+                let parsedData = JSON.parse(this.responseText);
+                that.setState({ postDetails: that.state.postDetails.concat(parsedData),
+                                dupPostDetails:  that.state.dupPostDetails.concat(parsedData)});
             }
         })
         xhr.open("GET", "https://graph.instagram.com/" + id + "?fields=id,media_type,media_url,username,timestamp&access_token=" + window.sessionStorage.getItem('access-token'))
@@ -202,6 +206,32 @@ class Profile extends Component {
         })
     }
 
+    searchAddHandler = (searchFor) =>{
+        console.log("Search string :" + this.state.postDescription)
+        let posts = this.state.dupPostDescription;
+        let selectedPosts = []
+        posts = posts.filter((post) => {
+            let caption = post.caption.toLowerCase();
+            let enteredStr = searchFor.toLowerCase();
+            if (caption.includes(enteredStr)) {
+                selectedPosts.push(post.id)
+                return true
+            } else {
+                return false
+            }
+        })
+        this.setState({
+            postDescription: posts
+        })
+        console.log("selected posts " +selectedPosts)
+        console.log("postDetails " +this.state.postDetails)
+        let postd = this.state.dupPostDetails
+        postd = postd.filter(item => selectedPosts.includes(item.id));
+        this.setState({
+            postDetails: postd
+        })
+    }
+
     commentChangeHandler = (e) => {
         this.setState({
             currentComment: e.target.value
@@ -296,7 +326,7 @@ class Profile extends Component {
                                     <div>
                                         <Typography component="p">
                                             {this.state.openedImageObj.caption}
-                                        </Typography>
+                                        </Typography><br />
                                         <Typography style={{ color: '#4dabf5' }} component="p" >
                                             #Garden #Leaves #Plants #Rose #Lab #Cells
                                         </Typography>
