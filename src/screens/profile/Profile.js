@@ -41,7 +41,7 @@ const styles = {
     openedImageObjContainer: { display: 'flex', flexDirection: 'row', backgroundColor: "#fff", width: '70%', height: '70%' },
     openedImageObjContainerRow1: { width: '50%', padding: 10 },
     openedImageObjContainerRow2: { display: 'flex', flexDirection: 'column', width: '50%', padding: 10 },
-    openedImageObjContainerRow21: { borderBottom: '2px solid #f2f2f2', display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' },
+    openedImageObjContainerRow21: { borderBottom: '2px solid #c0c0c0', display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' },
     openedImageObjContainerRow22:{ display: 'flex', height: '100%', flexDirection: 'column', justifyContent: 'space-between' }
 };
 
@@ -116,20 +116,23 @@ class Profile extends Component {
     }
 
     openEditModalHandler = () => {
-        this.setState({ isEditModalOpen: true });
+        this.setState({ isEditModalOpen: true,
+            newFullName: "" });
     }
 
     closeEditModalHandler = () => {
-        this.setState({ isEditModalOpen: false,fullNameRequired: 'dispNone'});
+        this.setState({ isEditModalOpen: false, fullNameRequired: 'dispNone'});
     }
 
     fullNameChangeHandler = (e) => {
+        console.log("Fullname change handler :" + e.target.value)
         this.setState({
             newFullName: e.target.value
         })
     }
 
     updateFullNameHandler = () => {
+        console.log("new full name : " + this.state.newFullName)
         if (this.state.newFullName === '') {
             this.setState({ fullNameRequired: 'dispBlock' })
         } else {
@@ -210,7 +213,7 @@ class Profile extends Component {
         let likeCount = this.state.likes;
         return (
             <div>
-                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler}
+                <Header showProfileIcon="true" showSearchBox="true" searchHandler={this.searchAddHandler} history={this.props.history}
                     logout={this.logout}
                     openProfilePage={this.openProfilePage} />
                 <div className="top-container">
@@ -225,7 +228,7 @@ class Profile extends Component {
                             <div className={classes.profileHeadInfo}> Followed By: {this.state.followedBy} </div> <br />
                         </div><br />
                         <div style={{ fontSize: "small" }}> {this.state.fullname}
-                            <Fab mini variant="round" color="secondary" aria-label="Edit" style={{ marginLeft: "20px" }} onClick={this.openEditModalHandler}>
+                            <Fab variant="round" color="secondary" aria-label="Edit"    style={{ marginLeft: "20px" }} onClick={this.openEditModalHandler}>
                                 <EditIcon />
                             </Fab>
                         </div>
