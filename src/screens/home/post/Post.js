@@ -139,7 +139,7 @@ class Post extends Component {
                         {this.state.comments.map((c, index) => (
                             <div key={index} className={classes.row}>
                                 <Typography component="p" style={{ fontWeight: 'bold' }}>
-                                    {window.sessionStorage.getItem('username')}:
+                                    {detail.username}:
                                 </Typography>
                                 <Typography component="p" >
                                     {c}
